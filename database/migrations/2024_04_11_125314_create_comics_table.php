@@ -15,9 +15,9 @@ return new class extends Migration {
 
             $table->string("title");
             $table->text("description")->nullable();
-            $table->string("thumb")->nullable();
-            $table->float("price");
-            $table->string("series");
+            $table->text("thumb")->nullable();
+            $table->string("price");
+            $table->string("series")->nullable();
             $table->date("sale_date")->nullable();
             $table->string("type");
             $table->json("artists");

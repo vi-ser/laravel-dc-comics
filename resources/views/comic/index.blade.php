@@ -17,7 +17,7 @@
                 <img src="{{ $currentComic['thumb'] }}" alt="Action Comics" class="comic-cover">
             
                 <span class="comic-title">
-                    {{ $currentComic['series'] }}
+                    {{ $currentComic['title'] }}
                 </span>
             
             </div>

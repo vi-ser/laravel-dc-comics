@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<main>
 <div id="comics">
 
     <div class="container">
@@ -13,8 +14,10 @@
 
             @foreach ($comics as $currentComic)
             <div class="comic">
-
-                <img src="{{ $currentComic['thumb'] }}" alt="Action Comics" class="comic-cover">
+                
+                <a href="{{ route('comics.show', $currentComic->id) }}">
+                    <img src="{{ $currentComic['thumb'] }}" alt="{{ $currentComic->title }}" class="comic-cover">
+                </a>
             
                 <span class="comic-title">
                     {{ $currentComic['title'] }}
@@ -25,12 +28,11 @@
         </div>
 
         <div class="btn-container">
-            <button class="btn btn-primary rounded-0">Load more</button>
+            <a href="{{route('comics.create')}}" class="btn btn-primary rounded-0">Aggiungi fumetto</a>
         </div>
     </div>
 
 </div>
-
 
 </main>
 

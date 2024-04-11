@@ -1,0 +1,37 @@
+@use "./variables" as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1000px;
+
+    margin: 0 auto;
+}
+
+h2 {
+    display: inline-block;
+    background-color: $primaryColor;
+
+    padding: 6px 24px 8px;
+
+    text-transform: uppercase;
+    font-family: "Barlow Condensed", sans-serif;
+
+    transform: translateY(-50%);
+}
+
+.btn.btn-primary {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+
+    padding: 8px 48px;
+
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-transform: uppercase;
+}

@@ -31,6 +31,9 @@ class ComicController extends Controller
     public function store(Request $request)
     {
 
+        $artistsArray = explode(', ', $request->artists);
+        $writersArray = explode(', ', $request->writers);
+
 
         $newComic = new Comic();
 
@@ -41,8 +44,8 @@ class ComicController extends Controller
         $newComic->series = $request->series;
         $newComic->sale_date = $request->sale_date;
         $newComic->type = $request->type;
-        $newComic->artists = $request->’artists’;
-        $newComic->writers = $request->’writers’;
+        $newComic->artists = json_encode($artistsArray);
+        $newComic->writers = json_encode($writersArray);
 
         $newComic->save();
 

@@ -13,10 +13,10 @@
 
             <img src="{{ $comic->thumb }}" alt="Action Comics" class="comic-cover" style="height: 300px">
             <div class="data-sheet">
+                <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-warning">Modifica</a><br><br>
                 <h3 class="comic-title">
                     {{ $comic->title }}
                 </h3>
-                
                 <span>
                     {{ $comic->series }}
                 </span>

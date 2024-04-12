@@ -19,8 +19,7 @@
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione</label>
-                <textarea type="text" class="form-control" id="description" name="description"> 
-                </textarea>
+                <textarea type="text" class="form-control" id="description" name="description"></textarea>
             </div>
             <div class="mb-3">
               <label for="thumb" class="form-label">Percorso immagine</label>

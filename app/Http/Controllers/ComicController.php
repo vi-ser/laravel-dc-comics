@@ -12,9 +12,11 @@ class ComicController extends Controller
      */
     public function index()
     {
+        $footerLinks = config("db.footerLinks");
+        $socials = config("db.socials");
         $comics = Comic::all();
 
-        return view('comics/index', compact('comics'));
+        return view('comics/index', compact('footerLinks', 'socials', 'comics'));
     }
 
     /**
@@ -22,7 +24,10 @@ class ComicController extends Controller
      */
     public function create()
     {
-        return view('comics.create');
+        $footerLinks = config("db.footerLinks");
+        $socials = config("db.socials");
+
+        return view('comics.create', compact('footerLinks', 'socials'));
     }
 
     /**
@@ -30,6 +35,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $footerLinks = config("db.footerLinks");
+        $socials = config("db.socials");
 
         $artistsArray = explode(', ', $request->artists);
         $writersArray = explode(', ', $request->writers);
@@ -57,8 +64,10 @@ class ComicController extends Controller
      */
     public function show(Comic $comic)
     {
+        $footerLinks = config("db.footerLinks");
+        $socials = config("db.socials");
         // dd($comic);
-        return view('comics.show', compact('comic'));
+        return view('comics.show', compact('footerLinks', 'socials', 'comic'));
     }
 
     /**
@@ -66,7 +75,10 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        return view('comics.edit', compact('comic'));
+        $footerLinks = config("db.footerLinks");
+        $socials = config("db.socials");
+
+        return view('comics.edit', compact('footerLinks', 'socials', 'comic'));
     }
 
     /**
@@ -74,6 +86,9 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $footerLinks = config("db.footerLinks");
+        $socials = config("db.socials");
+
         $comic->title = $request->title;
         $comic->description = $request->description;
         $comic->type = $request->type;
@@ -92,8 +107,13 @@ class ComicController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Comic $comic)
     {
-        //
+        $footerLinks = config("db.footerLinks");
+        $socials = config("db.socials");
+
+        $comic->delete();
+
+        return redirect()->route('comics.index');
     }
 }

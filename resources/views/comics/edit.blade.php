@@ -16,7 +16,7 @@
 
             <div class="mb-3">
               <label for="title" class="form-label">Titolo</label>
-              <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') ?? $comic->title}}">
+              <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') ?? $comic->title}}" required>
               @error('title')
               <div class="invalid-feedback">
                   {{$message}}
@@ -46,7 +46,7 @@
 
             <div class="mb-3">
               <label for="price" class="form-label">Prezzo</label>
-              <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') ?? $comic->price}}">
+              <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') ?? $comic->price}}" required>
               @error('price')
               <div class="invalid-feedback">
                   {{$message}}
@@ -66,7 +66,7 @@
 
             <div class="mb-3">
               <label for="sale_date" class="form-label">Data di vendita</label>
-              <input type="date" class="form-control @error('sale_date') is-invalid @enderror" id="sale_date" name="sale_date">
+              <input type="date" class="form-control @error('sale_date') is-invalid @enderror" id="sale_date" name="sale_date" required>
               @error('sale_date')
               <div class="invalid-feedback">
                   {{$message}}
@@ -76,7 +76,7 @@
 
             <div class="mb-3">
               <label for="type" class="form-label">Tipo</label>
-              <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" name="type" value="{{ old('type') ?? $comic->type}}">
+              <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" name="type" value="{{ old('type') ?? $comic->type}}" required>
               @error('type')
               <div class="invalid-feedback">
                   {{$message}}

@@ -33,34 +33,18 @@
                     {{ $comic->description }}
                 </p>
                 <br>
-              
-                <div class="team d-flex gap-5">
-                    <div class="team">
-                        <strong>Artists</strong>
-                        <br>
-                        <ul class="list-unstyled">
-                            @php
-                                $artists = json_decode($comic->artists);
-                            @endphp
-                            @foreach ($artists as $artist)
-                                <li>{{ $artist }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                   
-                    <div class="team">
-                        <strong>Writers</strong>
-                        <br>
-                        <ul class="list-unstyled">
-                            @php
-                                $writers = json_decode($comic->writers);
-                            @endphp
-                            @foreach ($writers as $writer)
-                                <li>{{ $writer }}</li>
-                           @endforeach
-                        </ul>
-                    </div>
-                </div>
+                <strong>Artists</strong>
+                <br>
+                <p>
+                    {{ $comic->artists }}
+                </p>
+                <br>
+                <strong>Writers</strong>
+                <br>
+                <p>
+                    {{ $comic->writers }}
+                </p>
+
             </div>
 
         </div>

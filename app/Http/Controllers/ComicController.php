@@ -35,13 +35,6 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $footerLinks = config("db.footerLinks");
-        $socials = config("db.socials");
-
-        $artistsArray = explode(', ', $request->artists);
-        $writersArray = explode(', ', $request->writers);
-
-
         $newComic = new Comic();
 
         $newComic->title = $request->title;
@@ -51,8 +44,8 @@ class ComicController extends Controller
         $newComic->series = $request->series;
         $newComic->sale_date = $request->sale_date;
         $newComic->type = $request->type;
-        $newComic->artists = json_encode($artistsArray);
-        $newComic->writers = json_encode($writersArray);
+        $newComic->artists = $request->artists;
+        $newComic->writers = $request->writers;
 
         $newComic->save();
 
@@ -86,9 +79,6 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $footerLinks = config("db.footerLinks");
-        $socials = config("db.socials");
-
         $comic->title = $request->title;
         $comic->description = $request->description;
         $comic->type = $request->type;
@@ -109,9 +99,6 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        $footerLinks = config("db.footerLinks");
-        $socials = config("db.socials");
-
         $comic->delete();
 
         return redirect()->route('comics.index');

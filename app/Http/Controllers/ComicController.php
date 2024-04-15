@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -35,6 +36,10 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+
+        // richiamo la funziona per validare la richiesta
+        $this->validation($request->all());
+
         $newComic = new Comic();
 
         $newComic->title = $request->title;
@@ -79,6 +84,10 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+
+        // richiamo la funziona per validare la richiesta
+        $this->validation($request->all());
+
         $comic->title = $request->title;
         $comic->description = $request->description;
         $comic->type = $request->type;
@@ -102,5 +111,35 @@ class ComicController extends Controller
         $comic->delete();
 
         return redirect()->route('comics.index');
+    }
+
+    private function validation($data)
+    {
+
+        $validator = Validator::make($data, [
+            'title' => 'required|max:255',
+            'description' => 'nullable|max:5000',
+            'thumb' => 'nullable|max:5000',
+            'price' => 'required|max:7',
+            'series' => 'nullable|max:100',
+            'sale_date' => 'required|max:today',
+            'type' => 'required|max:100',
+            'artists' => 'nullable',
+            'writers' => 'nullable'
+        ], [
+            'title.required' => 'Il titolo deve essere inserito',
+            'title.max' => "Il titolo deve avere massimo :max caratteri",
+            'description.max' => 'La descrizione deve avere massimo :max caratteri',
+            'thumb.max' => "L'url dell'immagine deve avere massimo :max caratteri",
+            'price.required' => 'Il prezzo deve essere inserito',
+            'price.max' => 'Il prezzo deve avere massimo :max caratteri',
+            'series.max' => 'Il campo "serie" deve avere massimo :max caratteri',
+            'sale_date.required' => 'La data di vendita deve essere inserita',
+            'sale_date.max' => 'La data di vendita non può essere futura al giorno corrente',
+            'type.required' => 'La tipologia deve essere inserita',
+            'type.max' => "La tipologia deve avere massimo :max caratteri",
+
+        ])->validate();
+
     }
 }

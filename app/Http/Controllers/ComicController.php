@@ -119,13 +119,13 @@ class ComicController extends Controller
         $validator = Validator::make($data, [
             'title' => 'required|max:255',
             'description' => 'nullable|max:5000',
-            'thumb' => 'nullable|max:5000',
+            'thumb' => 'nullable|max:2000',
             'price' => 'required|max:7',
             'series' => 'nullable|max:100',
-            'sale_date' => 'required|max:today',
+            'sale_date' => 'required',
             'type' => 'required|max:100',
-            'artists' => 'nullable',
-            'writers' => 'nullable'
+            'artists' => 'nullable|max:2000',
+            'writers' => 'nullable|max:2000'
         ], [
             'title.required' => 'Il titolo deve essere inserito',
             'title.max' => "Il titolo deve avere massimo :max caratteri",
@@ -135,9 +135,11 @@ class ComicController extends Controller
             'price.max' => 'Il prezzo deve avere massimo :max caratteri',
             'series.max' => 'Il campo "serie" deve avere massimo :max caratteri',
             'sale_date.required' => 'La data di vendita deve essere inserita',
-            'sale_date.max' => 'La data di vendita non può essere futura al giorno corrente',
             'type.required' => 'La tipologia deve essere inserita',
             'type.max' => "La tipologia deve avere massimo :max caratteri",
+            'artists.max' => 'Il campo artisti deve avere massimo :max caratteri',
+            'writers.max' => 'Il campo scrittori deve avere massimo :max caratteri',
+
 
         ])->validate();
 

@@ -39,19 +39,13 @@ class ComicController extends Controller
     {
 
         // richiamo la funziona per validare la richiesta
-        $this->validation($request->all());
+        // $this->validation($request->all());
 
         $newComic = new Comic();
 
-        $newComic->title = $request->title;
-        $newComic->description = $request->description;
-        $newComic->thumb = $request->thumb;
-        $newComic->price = $request->price;
-        $newComic->series = $request->series;
+        $newComic->fill($request->all);
         $newComic->sale_date = $request->sale_date;
-        $newComic->type = $request->type;
-        $newComic->artists = $request->artists;
-        $newComic->writers = $request->writers;
+
 
         $newComic->save();
 
@@ -87,17 +81,10 @@ class ComicController extends Controller
     {
 
         // richiamo la funziona per validare la richiesta
-        $this->validation($request->all());
+        // $this->validation($request->all());
 
-        $comic->title = $request->title;
-        $comic->description = $request->description;
-        $comic->type = $request->type;
-        $comic->price = $request->price;
-        $comic->series = $request->series;
+        $comic->update($request->all());
         $comic->sale_date = $request->sale_date;
-        $comic->type = $request->type;
-        $comic->artists = $request->artists;
-        $comic->writers = $request->writers;
 
         $comic->save();
 

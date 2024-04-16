@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -34,7 +35,7 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
 
         // richiamo la funziona per validare la richiesta
@@ -82,7 +83,7 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(StoreComicRequest $request, Comic $comic)
     {
 
         // richiamo la funziona per validare la richiesta
@@ -113,35 +114,4 @@ class ComicController extends Controller
         return redirect()->route('comics.index');
     }
 
-    private function validation($data)
-    {
-
-        $validator = Validator::make($data, [
-            'title' => 'required|max:255',
-            'description' => 'nullable|max:5000',
-            'thumb' => 'nullable|max:2000',
-            'price' => 'required|max:7',
-            'series' => 'nullable|max:100',
-            'sale_date' => 'required',
-            'type' => 'required|max:100',
-            'artists' => 'nullable|max:2000',
-            'writers' => 'nullable|max:2000'
-        ], [
-            'title.required' => 'Il titolo deve essere inserito',
-            'title.max' => "Il titolo deve avere massimo :max caratteri",
-            'description.max' => 'La descrizione deve avere massimo :max caratteri',
-            'thumb.max' => "L'url dell'immagine deve avere massimo :max caratteri",
-            'price.required' => 'Il prezzo deve essere inserito',
-            'price.max' => 'Il prezzo deve avere massimo :max caratteri',
-            'series.max' => 'Il campo "serie" deve avere massimo :max caratteri',
-            'sale_date.required' => 'La data di vendita deve essere inserita',
-            'type.required' => 'La tipologia deve essere inserita',
-            'type.max' => "La tipologia deve avere massimo :max caratteri",
-            'artists.max' => 'Il campo artisti deve avere massimo :max caratteri',
-            'writers.max' => 'Il campo scrittori deve avere massimo :max caratteri',
-
-
-        ])->validate();
-
-    }
 }

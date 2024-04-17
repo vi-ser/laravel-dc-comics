@@ -40,6 +40,7 @@ class ComicController extends Controller
 
         // richiamo la funziona per validare la richiesta
         // $this->validation($request->all());
+        $request->validated();
 
         $newComic = new Comic();
 
@@ -82,6 +83,7 @@ class ComicController extends Controller
 
         // richiamo la funziona per validare la richiesta
         // $this->validation($request->all());
+        $request->validated();
 
         $comic->update($request->all());
         $comic->sale_date = $request->sale_date;
